@@ -7,6 +7,8 @@ require("beautiful")
 -- Notification library
 require("naughty")
 
+vicious = require("vicious")
+
 -- Load Debian menu entries
 require("debian.menu")
 
@@ -90,7 +92,13 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" }, "%d %b, %H:%M ")
+mytextclock = awful.widget.textclock({ align = "right" }, " <b><span foreground='#4C70B0'>%d %b, %H:%M </span></b>")
+
+-- Custom Widgets for Displaying on StatusBar
+memwidget = widget({ type = "textbox" })
+vicious.register(memwidget, vicious.widgets.mem, " <span foreground='#4C70B0'>$1% RAM </span>", 13)
+cpuwidget = widget({ type = "textbox" })
+vicious.register(cpuwidget, vicious.widgets.cpu, "<span foreground='#4C70B0'> $1% CPU </span>")
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -169,8 +177,9 @@ for s = 1, screen.count() do
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
-        mylayoutbox[s],
         mytextclock,
+        memwidget,
+        cpuwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
