@@ -7,9 +7,9 @@ theme = {}
 theme.font          = "sans 8"
 
 theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
+theme.bg_focus      = "#4C70B0"
 theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.bg_minimize   = "#6E6E6E"
 
 theme.fg_normal     = "#aaaaaa"
 theme.fg_focus      = "#ffffff"
