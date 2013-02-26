@@ -62,8 +62,24 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
+shutdowncommand = "shutdownchoice"
+
+lockscreen = "gnome-screensaver-command -a"
+suspendcmd = "sudo pm-suspend"
+
+touchpadcommand = "touchpad_toggle"
+
+computermenu = {
+  { "touchpad toggle", touchpadcommand},
+  { "shutdown", shutdowncommand},
+  { "sleep", suspendcmd},
+  { "lock screen", lockscreen}
+}
+
+
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debian.menu.Debian_menu.Debian },
+                                    { "computer", computermenu },
                                     { "open terminal", terminal }
                                   }
                         })
