@@ -75,14 +75,14 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
 mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
                                      menu = mymainmenu })
 
-mytextclock = awful.widget.textclock({ align = "right" }, " <b><span foreground='#B3B1B1'>%d %b, %H:%M </span></b>")
+largeclock = awful.widget.textclock({ align = "left" }, " <b><span foreground='#B3B1B1'>%d %B %Y - %A - %H:%M </span></b>")
 
 memwidget = widget({ type = "textbox" })
 vicious.register(memwidget, vicious.widgets.mem, " <b><span foreground='#B3B1B1'>$1% RAM </span></b>", 13)
 cpuwidget = widget({ type = "textbox" })
 vicious.register(cpuwidget, vicious.widgets.cpu, "<b><span foreground='#B3B1B1'> $1% CPU </span></b>")
 space = widget({ type = "textbox" })
-space.text = "   "
+space.text = " <b><span foreground='#B3B1B1'>-</span></b> "
 
 mysystray = widget({ type = "systray" })
 
@@ -108,7 +108,7 @@ vicious.register(netwidget, vicious.widgets.net,
       returnString = "Not Connected!"
     end
 
-    return " <b><span foreground='#B3B1B1'>" .. wlanIp .. " IP</span></b>"
+    return " <b><span foreground='#B3B1B1'>" .. wlanIp .. " IP</span></b> "
 end, 10)
 
 topwibox = {}
@@ -176,19 +176,23 @@ for s = 1, screen.count() do
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
-        mytextclock,
+        mylayoutbox[s],
+        s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
     }
 
     bottomwibox[s] = awful.wibox({ position = "bottom", screen = s })
     bottomwibox[s].widgets = {
+        {
+            largeclock,
+            layout = awful.widget.layout.horizontal.leftright
+        },
         memwidget,
         space,
         cpuwidget,
         space,
         netwidget,
-        s == 1 and mysystray or nil,
         layout = awful.widget.layout.horizontal.rightleft
     }
 end
