@@ -82,9 +82,34 @@ vicious.register(memwidget, vicious.widgets.mem, " <b><span foreground='#B3B1B1'
 cpuwidget = widget({ type = "textbox" })
 vicious.register(cpuwidget, vicious.widgets.cpu, "<b><span foreground='#B3B1B1'> $1% CPU </span></b>")
 space = widget({ type = "textbox" })
-space.text = " - "
+space.text = "   "
 
 mysystray = widget({ type = "systray" })
+
+netwidget = widget({type = "textbox" })
+vicious.register(netwidget, vicious.widgets.net,
+  function(widget, args)
+    function ip_addr(interface)
+      local ip = io.popen("ip addr show " .. interface .. " | grep 'inet '")
+      local addr = ip:read("*a")
+      ip:close()
+      addr = string.match(addr, "%d+.%d+.%d+.%d+")
+      return addr
+    end
+    local wlanIp = ip_addr("wlan0")
+    local lanIp = ip_addr("eth0")
+    local returnString = "" 
+
+    if wlanIp ~= "" then
+      returnString = wlanIp
+    elseif lanIp ~= "" then
+      returnString = lanIp
+    else
+      returnString = "Not Connected!"
+    end
+
+    return " <b><span foreground='#B3B1B1'>" .. wlanIp .. " IP</span></b>"
+end, 10)
 
 topwibox = {}
 bottomwibox = {}
@@ -161,6 +186,8 @@ for s = 1, screen.count() do
         memwidget,
         space,
         cpuwidget,
+        space,
+        netwidget,
         s == 1 and mysystray or nil,
         layout = awful.widget.layout.horizontal.rightleft
     }
