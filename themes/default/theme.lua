@@ -7,13 +7,13 @@ theme = {}
 theme.font          = "sans 8"
 
 theme.bg_normal     = "#222222"
-theme.bg_focus      = "#4C70B0"
+theme.bg_focus      = "#A8A8A8"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#6E6E6E"
 
 theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
+theme.fg_focus      = "#000000"
+theme.fg_urgent     = "#800000"
 theme.fg_minimize   = "#ffffff"
 
 theme.border_width  = "1"

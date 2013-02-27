@@ -75,12 +75,12 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
 mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
                                      menu = mymainmenu })
 
-mytextclock = awful.widget.textclock({ align = "right" }, " <b><span foreground='#4C70B0'>%d %b, %H:%M </span></b>")
+mytextclock = awful.widget.textclock({ align = "right" }, " <b><span foreground='#B3B1B1'>%d %b, %H:%M </span></b>")
 
 memwidget = widget({ type = "textbox" })
-vicious.register(memwidget, vicious.widgets.mem, " <b><span foreground='#4C70B0'>$1% RAM </span></b>", 13)
+vicious.register(memwidget, vicious.widgets.mem, " <b><span foreground='#B3B1B1'>$1% RAM </span></b>", 13)
 cpuwidget = widget({ type = "textbox" })
-vicious.register(cpuwidget, vicious.widgets.cpu, "<b><span foreground='#4C70B0'> $1% CPU </span></b>")
+vicious.register(cpuwidget, vicious.widgets.cpu, "<b><span foreground='#B3B1B1'> $1% CPU </span></b>")
 space = widget({ type = "textbox" })
 space.text = " - "
 
