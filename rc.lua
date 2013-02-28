@@ -339,8 +339,6 @@ awful.rules.rules = {
       properties = { tag = tags[1][3] } },
     { rule = { class = "Clementine" },
       properties = { tag = tags[1][3] } },
-    { rule = { class = "Subl" },
-      properties = { tag = tags[1][1] } },
     { rule = { class = "Gnome-terminal" },
       properties = { tag = tags[1][2] } },
     { rule = { instance = "Chrome" },    
